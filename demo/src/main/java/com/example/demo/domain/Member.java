@@ -1,19 +1,22 @@
 package com.example.demo.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity(name = "member")
-public class member extends BaseEntity {
+public class Member extends BaseEntity {
     String name;
     String gender;
     int age;
@@ -24,4 +27,13 @@ public class member extends BaseEntity {
     String social_type;
     String email;
     int point;
+
+    @OneToMany(mappedBy = "member")
+    private List<MemberMission> memberMissions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member")
+    private List<MemberPrefer> memberPrefers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member")
+    private List<Review> reviews = new ArrayList<>();
 }
