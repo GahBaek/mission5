@@ -26,7 +26,7 @@ public class Store extends BaseEntity{
     @JoinColumn(name = "region_id")
     private Region region;
 
-    @OneToMany(mappedBy = "store")
+    @OneToMany(mappedBy = "store", orphanRemoval = true)
     private List<Mission> missions = new ArrayList<>();
 
     @OneToMany(mappedBy = "store")
