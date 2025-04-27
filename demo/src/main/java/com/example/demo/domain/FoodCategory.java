@@ -18,6 +18,6 @@ import java.util.List;
 public class FoodCategory extends BaseEntity{
     String name;
 
-    @OneToMany(mappedBy = "foodCategory", orphanRemoval = true)
+    @OneToMany(mappedBy = "category", orphanRemoval = true)
     private List<MemberPrefer> memberPrefers = new ArrayList<>();
 }

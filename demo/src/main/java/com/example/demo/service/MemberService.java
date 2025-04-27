@@ -26,7 +26,6 @@ public class MemberService {
 
         memberMissionRepository.deleteByMemberId(memberId);
         memberPreferRepository.deleteByMemberId(memberId);
-        reviewRepository.detachMember(memberId);
         memberRepository.delete(member);
     }
 }

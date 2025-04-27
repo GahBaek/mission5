@@ -1,9 +1,6 @@
 package com.example.demo.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,18 +14,29 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity(name = "store")
-public class Store extends BaseEntity{
+public class Store extends BaseEntity {
     String name;
     String address;
     float score;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "region_id")
     private Region region;
 
-    @OneToMany(mappedBy = "store", orphanRemoval = true)
+    @OneToMany(mappedBy = "store", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Mission> missions = new ArrayList<>();
 
-    @OneToMany(mappedBy = "store")
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Store{" +
+                "id=" + getId() +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", score=" + score +
+                ", region=" + (region != null ? region.getName() : "N/A") + // region의 이름 출력
+                '}';
+    }
 }
