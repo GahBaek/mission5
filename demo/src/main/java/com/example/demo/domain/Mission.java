@@ -27,6 +27,6 @@ public class Mission extends BaseEntity{
     @JoinColumn(name = "store_id")
     private Store store;
 
-    @OneToMany(mappedBy = "mission")
+    @OneToMany(mappedBy = "mission", orphanRemoval = true)
     private List<MemberMission> memberMissions = new ArrayList<>();
 }
