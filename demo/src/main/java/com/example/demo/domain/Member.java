@@ -28,10 +28,10 @@ public class Member extends BaseEntity {
     String email;
     int point;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", orphanRemoval = true)
     private List<MemberMission> memberMissions = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", orphanRemoval = true)
     private List<MemberPrefer> memberPrefers = new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
