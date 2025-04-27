@@ -1,6 +1,8 @@
-package com.example.umcproject.domain;
+package com.example.demo.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,7 +13,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity(name = "review")
-public class review extends BaseEntity{
+public class Review extends BaseEntity{
     String content;
     float score;
+
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
 }
